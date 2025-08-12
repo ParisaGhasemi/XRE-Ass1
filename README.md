@@ -3,8 +3,6 @@
 ### Objective
 Your goal is to make the Apple prefab fall from a height and bounce realistically using Unity's physics engine.
 
-<iframe src="https://play.unity.com/en/games/621778e4-44d9-4388-afe2-31324d8b57cf/xfactory" width="640" height="480" frameborder="0" allowfullscreen></iframe>
-
 ### Steps
 1. Open `Assets/Scenes/AppleScene.unity`.
 2. Select the Apple prefab in the scene.
