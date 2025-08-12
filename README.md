@@ -5,7 +5,7 @@ Your goal is to make the Apple prefab fall from a height and bounce realisticall
 
 <div style="max-width: 960px; margin: 0 auto;">
   <iframe
-    src="https://parisaghasemi.github.io/XRE-Ass1/Game/"
+    src="https://parisaghasemi.github.io/XRE-Ass1/game/"
     width="960"
     height="600"
     allow="autoplay; fullscreen; xr-spatial-tracking"
