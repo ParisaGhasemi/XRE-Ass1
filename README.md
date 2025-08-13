@@ -3,25 +3,18 @@
 ### Objective
 Your goal is to make the Apple prefab fall from a height and bounce realistically using Unity's physics engine.
 
-
-
-
 <div id="game-shell" style="max-width:1100px;margin:0 auto;position:relative;">
-  <!-- 16:9 box with no internal scrollbars -->
-  <div style="position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border:0;border-radius:12px;">
+  <div style="position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:12px;">
     <!-- Cover -->
-    <div id="game-cover" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;background:#111;">
-      <!-- Optional: a screenshot thumbnail -->
-      <!-- <img src="/path/to/screenshot.jpg" alt="Game cover" style="max-width:100%;height:auto;opacity:.6;"> -->
-      <button id="play-btn" style="padding:.8rem 1.2rem;border:0;border-radius:999px;background:#1f6feb;color:#fff;font:600 16px/1.1 system-ui;cursor:pointer;">
+    <div id="game-cover" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:12px;background:#111;z-index:1;">
+      <button id="play-btn" style="padding:.85rem 1.25rem;border:0;border-radius:999px;background:#1f6feb;color:#fff;font:600 16px system-ui;cursor:pointer;">
         ▶ Play
       </button>
     </div>
 
-    <!-- The game (starts empty; src set on click) -->
+    <!-- The game iframe (stays empty until click, so no auto-run) -->
     <iframe
       id="game-frame"
-      src=""
       title="Game"
       allow="autoplay; fullscreen; gamepad; xr-spatial-tracking"
       allowfullscreen
@@ -31,33 +24,43 @@ Your goal is to make the Apple prefab fall from a height and bounce realisticall
     </iframe>
   </div>
 
-  <!-- Controls row (optional) -->
+  <!-- Optional fullscreen button under the frame -->
   <div style="display:flex;gap:.5rem;justify-content:center;margin-top:.5rem;">
-    <button id="fs-btn" style="padding:.4rem .8rem;border:1px solid #ccc;border-radius:8px;background:#fff;cursor:pointer;">Fullscreen</button>
+    <button id="fs-btn" style="padding:.45rem .8rem;border:1px solid #ccc;border-radius:8px;background:#fff;cursor:pointer;">
+      Fullscreen
+    </button>
   </div>
 </div>
 
 <script>
-  const PLAY_URL = "{{ site.baseurl }}/webgl/"; // for a project site. For a user/org site use "/webgl/"
+document.addEventListener('DOMContentLoaded', () => {
+  // Use an ABSOLUTE URL so Jekyll/baseurl quirks don't break it.
+  // Project site (https://YOUR_USERNAME.github.io/YOUR_REPO/webgl/):
+  const PLAY_URL = "{{ site.baseurl }}/webgl/";
+  // If this is a USER/ORG site instead, use this instead:
+  // const PLAY_URL = "https://YOUR_USERNAME.github.io/webgl/";
 
-  const playBtn = document.getElementById('play-btn');
-  const fsBtn   = document.getElementById('fs-btn');
-  const frame   = document.getElementById('game-frame');
+  const frame = document.getElementById('game-frame');
+  const cover = document.getElementById('game-cover');
 
-  playBtn.addEventListener('click', () => {
-    frame.src = PLAY_URL;             // loads the Unity page only after click
-    document.getElementById('game-cover').style.display = 'none';
+  document.getElementById('play-btn').addEventListener('click', () => {
+    frame.src = PLAY_URL;        // load Unity only after click
+    cover.style.display = 'none';
     frame.focus();
   });
 
-  fsBtn.addEventListener('click', async () => {
+  document.getElementById('fs-btn').addEventListener('click', async () => {
     try {
-      // Fullscreen the iframe itself (works as long as allowfullscreen is set)
       if (frame.requestFullscreen) await frame.requestFullscreen();
       else if (frame.webkitRequestFullscreen) frame.webkitRequestFullscreen();
-    } catch (e) { console.warn(e); }
+    } catch (e) {
+      console.warn('Fullscreen failed:', e);
+    }
   });
+});
 </script>
+
+
 
 ### Steps
 1. Open `Assets/Scenes/AppleScene.unity`.
