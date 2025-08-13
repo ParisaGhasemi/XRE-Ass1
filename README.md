@@ -3,7 +3,17 @@
 ### Objective
 Your goal is to make the Apple prefab fall from a height and bounce realistically using Unity's physics engine.
 
-<iframe src=https://ParisaGhasemi.github.io/XRE-Ass1/webgl/ width="960" height="600" frameborder="0" allowfullscreen></iframe>
+
+<div style="max-width: 1100px; margin: 0 auto;">
+  <iframe
+    src="{{ site.baseurl }}/webgl/"
+    allow="autoplay; fullscreen; xr-spatial-tracking; gamepad"
+    frameborder="0"
+    style="width:100%; aspect-ratio: 16/9; border:0;"
+    loading="lazy"
+    allowfullscreen
+  ></iframe>
+</div>
 
 ### Steps
 1. Open `Assets/Scenes/AppleScene.unity`.
